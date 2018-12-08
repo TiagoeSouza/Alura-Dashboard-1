@@ -1,0 +1,17 @@
+{
+    "languages": [
+        {
+            "id": "java",
+            "extensions": [
+                ".java",
+                ".jav",
+                ".json"
+            ],
+            "aliases": [
+                "Java",
+                "java",
+                "json"
+            ]
+        }
+    ]
+}
