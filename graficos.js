@@ -44,7 +44,7 @@ function desenharPizza() {
 
     var optionsGrafLinha = {
         title: "Gastos por Mês",
-        width: 650,
+        // width: 650,
         height: 300,
         curveType: "function",
         legend: 'none',
@@ -97,9 +97,15 @@ function desenharPizza() {
 
 
     // Tipo de gastos grafico de barra
-    var tabelaGrafTipoGastosBar = new google.visualization.DataTable();
+    var dadosJson = $.ajax({
+        url: 'https://gist.githubusercontent.com/TiagoeSouza/5eb1c5e196d32b93f09c053996449db3/raw/e1ae64ec2e040d0a6ec92992a467c76319c3390c/dados.json',
+        dataType: 'json',
+        async: false
+    }).responseText;
 
-    tabelaGrafTipoGastosBar.addColumn("string", "Categorias");
+    var tabelaGrafTipoGastosBar = new google.visualization.DataTable(dadosJson);
+
+    /*tabelaGrafTipoGastosBar.addColumn("string", "Categorias");
     tabelaGrafTipoGastosBar.addColumn("number", "Valores");
     tabelaGrafTipoGastosBar.addColumn({ type: "string", role: 'annotation' });
     tabelaGrafTipoGastosBar.addColumn({ type: "string", role: 'style' });
@@ -110,9 +116,11 @@ function desenharPizza() {
         ['Saúde', 50, "R$ 50,00", "grey"],
         ['Cartão de Crédito', 900, "R$ 900,00", "#990099"],
         ['Alimentação', 260, "R$ 260,00", "grey"]
-    ]);
+    ]);*/
 
     tabelaGrafTipoGastosBar.sort([{ column: 1, desc: true }]); // OR tabelaGrafTipoGastosBar.sort(["Valores"]);
+    // var conversao = tabelaGrafTipoGastosBar.toJSON();
+    // console.log("JsonConversao", conversao);
 
     var graficoTipoGastosBar = new google.visualization.BarChart(document.getElementById("graficoTipoGastosBar"));
     var optionsGraficoTipoGastosBar = {
@@ -148,7 +156,7 @@ function desenharPizza() {
         mimeType: 'application-json',
         async: false,
     }).responseText;
-    console.log(dadosJson);
+    // console.log(dadosJson);
     var tabelaGrafTipoGastosBarJson = new google.visualization.DataTable(dadosJson);
 
     var graficoTipoGastosBarJson = new google.visualization.BarChart(document.getElementById("graficoTipoGastosBarJson"));
